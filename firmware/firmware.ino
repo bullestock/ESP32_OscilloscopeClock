@@ -418,22 +418,25 @@ void loop() {
   }
 
   //Optionals
-  //PlotTable(DialDots,sizeof(DialDots),0x00,1,0);
-  //PlotTable(TestData,sizeof(TestData),0x00,0,00); //Full
-  //PlotTable(TestData,sizeof(TestData),0x00,0,11); //Without square
+  //PlotTable(DialDots, sizeof(DialDots), 0x00, 1, 0);
+  //PlotTable(TestData, sizeof(TestData), 0x00, 0, 00); //Full
+  //PlotTable(TestData, sizeof(TestData), 0x00, 0, 11); //Without square
 
   int i;
   //Serial.println("Out Ring");                         //2 to back trace
-  //for (i=0; i < 1000; i++) PlotTable(DialData,sizeof(DialData),0x00,2,0);
+  //for (i=0; i < 1000; i++) PlotTable(DialData, sizeof(DialData), 0x00, 2, 0);
  
   //Serial.println("Diagonals");                        //2 to back trace
-  //for (i=0; i < 2000; i++) PlotTable(DialData,sizeof(DialData),0x00,0,0);
+  //for (i=0; i < 2000; i++) PlotTable(DialData, sizeof(DialData), 0x00, 0, 0);
 
-  PlotTable(DialData,sizeof(DialData),0x00,1,0);      //2 to back trace
-  PlotTable(DialDigits12,sizeof(DialDigits12),0x00,1,0);//2 to back trace 
-  PlotTable(HrPtrData, sizeof(HrPtrData), 0xFF,0,9*h);  // 9*h
-  PlotTable(MinPtrData,sizeof(MinPtrData),0xFF,0,9*m);  // 9*m
-  PlotTable(SecPtrData,sizeof(SecPtrData),0xFF,0,5*s);  // 5*s
+  PlotTable(DialData, sizeof(DialData), 0x00, 1, 0);      //2 to back trace
+  if (h < 12)
+      PlotTable(DialDigits12, sizeof(DialDigits12), 0x00, 1, 0);//2 to back trace
+  else
+      PlotTable(DialDigits24, sizeof(DialDigits24), 0x00, 1, 0);//2 to back trace 
+  PlotTable(HrPtrData,  sizeof(HrPtrData),  0xFF, 0, 9*h);  // 9*h
+  PlotTable(MinPtrData, sizeof(MinPtrData), 0xFF, 0, 9*m);  // 9*m
+  PlotTable(SecPtrData, sizeof(SecPtrData), 0xFF, 0, 5*s);  // 5*s
 
   #if defined EXCEL
     while(1);
